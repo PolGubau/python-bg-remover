@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from tkinter import filedialog
 from bgRemover import remove_background
 
@@ -21,18 +22,40 @@ def process_image():
 
 root = tk.Tk()
 root.title("Background Remover")
+root.geometry("400x300")
 
-tk.Label(root, text="Input Image:").pack()
+# Usamos ttk para estilizar
+style = ttk.Style()
+style.configure("TButton", padding=6, background="#000", foreground="black",round=20 )
+
+style.configure("TLabel", font=("Arial", 10))
+
+
+
+
+tk.Label(root, text="Input Image:").pack(pady=10)
+
 input_label = tk.Label(root, text="")
-input_label.pack()
-tk.Button(root, text="Select Input Image", command=select_image).pack()
+input_label.pack(pady=5)
+ 
+
+# Botón para seleccionar imagen
+select_button = ttk.Button(root, text="Select Input Image", command=select_image)
+select_button.pack(pady=10)
+
 
 tk.Label(root, text="Output Image:").pack()
 output_label = tk.Label(root, text="")
 output_label.pack()
-
-tk.Button(root, text="Remove Background", command=process_image).pack()
 tk.Button(root, text="Save Output Image As", command=save_image).pack()
 
 
+
+
+
+# Botón para procesar la imagen
+remove_button = ttk.Button(root, text="Remover Fondo", command=process_image)
+remove_button.pack(pady=10)
+
+# Ejecutar el loop principal de la ventana
 root.mainloop()
